@@ -1,12 +1,13 @@
-from flask import Blueprint, render_template, redirect, url_for, request, flash
+from flask import Blueprint, render_template, redirect, url_for, request, flash, session
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, logout_user, login_required
 from .models import User
+from .models import Session_tracking
 from . import db
+import uuid
 
 
 auth = Blueprint('auth', __name__)
-
 
 @auth.route('/login')
 def login():
@@ -20,6 +21,7 @@ def login_post():
 
     user = User.query.filter_by(email=email).first()
 
+
     # check if the user actually exists
     # take the user-supplied password, hash it, and compare it to the hashed password in the database
     if not user or not check_password_hash(user.password, password):
@@ -28,6 +30,14 @@ def login_post():
 
     # if the above check passes, then we know the user has the right credentials
     login_user(user, remember=remember)
+
+    session_tracking = uuid.uuid4() #losowanie uuid
+    session['session_tracking'] = session_tracking  #dodanie do sesji flask wylosowanego uuid
+    db_record_new_session = Session_tracking(session=str(session_tracking)) #co bedzie zapisane do bazy danych
+
+    # add the new user to the database
+    db.session.add(db_record_new_session) #przygotowanie obiektu ORM
+    db.session.commit() #commit do bazy
     return redirect(url_for('main.profile'))
 
 @auth.route('/signup')
