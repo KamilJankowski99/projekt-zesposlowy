@@ -9,11 +9,9 @@ def index():
     return render_template('index.html')
 
 
-@main.route('/profile')
+@main.route('/admin-panel')
 @login_required
 def profile():
-    return render_template('profile.html', name=current_user.name)
+    return render_template('admin-panel.html', name=current_user.name)
 
-@main.route('/test')
-def test():
-    return render_template('test.html')
+
