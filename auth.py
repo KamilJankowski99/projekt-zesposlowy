@@ -38,7 +38,7 @@ def login_post():
     # add the new user to the database
     db.session.add(db_record_new_session) #przygotowanie obiektu ORM
     db.session.commit() #commit do bazy
-    return redirect(url_for('main.profile'))
+    return redirect(url_for('main.adminpanel'))
 
 @auth.route('/signup')
 def signup():
