@@ -10,10 +10,10 @@ def create_app():
     app = Flask(__name__)
 
     app.config['SECRET_KEY'] = 'secret-key-goes-here'
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
+    app.config['SQLALCHEMY_DATABASE_URI'] = "mssql+pymssql://sqladmin:iLAmO46czQdqINjdCCq4@sql-spamapp.database.windows.net/db-spamapp"
 
     db.init_app(app)
-
+    
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
