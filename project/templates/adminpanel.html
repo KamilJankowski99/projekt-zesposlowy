@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form method="POST" action="/adminpanel">
+  <div class="form-floating">
+      <label for="formGroupExampleInput" class="form-label">Email address</label>
+      <input type="email" class="form-control" name="Email" id="floatingInput" placeholder="name@example.com"  style="width: 100%"/>
+  </div>
+  
+  <div class="form-floating">
+    <label for="floatingTextarea1">Subject</label>
+    <input type="text" class="form-control" name="Subject" placeholder="Subject" id="floatingTextarea1" style="width: 100%">
+  </div>
+      
+  </br>
+  <div class="form-floating">
+    <label for="floatingTextarea2">Text</label>
+    <input type="text" class="form-control" name="Text" placeholder="Text" id="floatingTextarea2" style="height: 200px; width: 100%">
+  </div>
+</br>
+  <button type="submit" class="button is-block is-info is-large is-fullwidth" style="float:right">SEND</button>
+</form>
+{% endblock %}
