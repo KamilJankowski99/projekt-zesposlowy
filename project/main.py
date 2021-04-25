@@ -22,9 +22,11 @@ def adminpanel_post():
     email = request.form.get('Email')
     subject = request.form.get('Subject')
     text = request.form.get('Text')
+    date = request.form.get('Date')
+    time = request.form.get('Time')
 
     # co bedzie zapisane do bazy danych
-    db_record_new_session = Mails(email=email, subject=subject, text=text)
+    db_record_new_session = Mails(email=email, subject=subject, text=text, date=date, time=time)
 
     # add the new user to the database
     db.session.add(db_record_new_session)  # przygotowanie obiektu ORM
