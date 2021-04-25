@@ -17,3 +17,5 @@ class Mails(db.Model):
     email = db.Column(db.String(100))
     subject = db.Column(db.String(100))
     text = db.Column(db.String(1000))
+    date = db.Column(db.String(100))
+    time = db.Column(db.String(100))
